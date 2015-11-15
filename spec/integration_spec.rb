@@ -23,36 +23,23 @@ describe Checkout do
     let(:basket_discount) { BasketDiscount.new(6000, 10) }
     let(:item_discount) {   ItemDiscount.new(2, 850, "001")}
 
-    context "items 1,2,3" do
+    context do
       let(:items) { [item_1, item_2, item_3] }
-      #Basket: 001,002,003
-      #Total price expected: £66.78
-
-
 
       it do
         expect(checkout.total).to eq 6678
       end
     end
 
-    context "items 1,3,1" do
+    context do
       let(:items) { [item_1, item_3, item_1] }
 
-      #Basket: 001,003,001
-      #Total price expected: £36.95
       it do
-        checkout
-        sub_total = 925 + 1995 + 925
-        sub_total = 3845
-        expect(checkout.sub_total).to eq 3845
         expect(checkout.total).to eq 3695
       end
     end
 
-    context "items 1,2,1,3" do
-      #Basket: 001,002,001,003
-      #Total price expected: £73.76
-
+    context do
       let(:items) { [item_1, item_2, item_1, item_3] }
 
       it do
