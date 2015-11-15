@@ -29,7 +29,6 @@ class Checkout < Struct.new(:promotional_rules)
     @basket ||= Basket.new
   end
 
-
   def apply_rules(rules)
     result = rules.map do |r|
       yield r
