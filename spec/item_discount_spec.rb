@@ -1,15 +1,15 @@
 require "spec_helper"
 
-describe Noths::ItemDiscount do
+describe ItemDiscount do
   let(:item_1) { double "item_1", product_code: "001", name: "Travel Card Holder",     price: 925 }
   let(:item_2) { double "item_2", product_code: "002", name: "Personalised cufflinks", price: 4500 }
-  let(:promotional_rule) { Noths::ItemDiscount.new(items) }
+  let(:promotional_rule) { ItemDiscount.new(items) }
 
   describe "#discount" do
     let(:discount_trigger) { 2 }
     let(:discounted_value) { 850 }
     let(:product_code) { "001" }
-    let(:promotional_rule) { Noths::ItemDiscount.new(discount_trigger, discounted_value, product_code) }
+    let(:promotional_rule) { ItemDiscount.new(discount_trigger, discounted_value, product_code) }
     let(:basket) { double "basket", items: items }
 
     subject(:discount) { promotional_rule.discount(basket) }

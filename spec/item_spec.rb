@@ -1,5 +1,5 @@
-describe Noths::Item do
-  let(:item) { Noths::Item.new product_code: product_code, name: product_name, price: price }
+describe Item do
+  let(:item) { Item.new product_code: product_code, name: product_name, price: price }
 
   let(:price) { 1234 }
   let(:product_name) { "Some item"  }

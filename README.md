@@ -1,0 +1,30 @@
+Usage
+-----
+
+```
+git clone https://github.com/markburns/checkout.git
+cd checkout
+```
+
+```ruby
+require "./lib/checkout"
+
+#10% off £60
+basket_discount = BasketDiscount.new(6000, 10)
+
+item_1 = Item.new price: 925,  product_code: "001", name: "Travel Card Holder"
+item_2 = Item.new price: 4500, product_code: "002", name: "Personalised cufflinks"
+item_3 = Item.new price: 1995, product_code: "003", name: "Kids T-shirt"
+
+
+#reduce price of more than 2 travel card holders to £8.50
+item_discount   = ItemDiscount.new(2, 850, "001")
+checkout = Checkout.new([basket_discount, item_discount])
+
+checkout.scan item_1
+checkout.scan item_2
+checkout.scan item_3
+
+
+checkout.total
+#=> 6678

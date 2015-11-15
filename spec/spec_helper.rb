@@ -1,4 +1,4 @@
-require "./lib/noths"
+require "./lib/checkout"
 require "byebug"
 
 RSpec.configure do |config|

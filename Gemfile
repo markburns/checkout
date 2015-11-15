@@ -7,5 +7,3 @@ gem "virtus"
 group :development, :test do
   gem "byebug"
 end
-
-gemspec

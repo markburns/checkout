@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe Noths::Checkout do
+describe Checkout do
   let(:item_1) { double "item_1", product_code: "001", name: "Travel Card Holder",     price: 925 }
   let(:item_2) { double "item_2", product_code: "002", name: "Personalised cufflinks", price: 4500 }
   let(:item_3) { double "item_3", product_code: "003", name: "Kids T-shirt",           price: 1995 }
   let(:items) { [item_1, item_2, item_3] }
 
   let(:promotional_rules) { [] }
-  let(:checkout) { Noths::Checkout.new(promotional_rules) }
+  let(:checkout) { Checkout.new(promotional_rules) }
 
   def scan_items!
     items.each do |i|
@@ -63,8 +63,8 @@ describe Noths::Checkout do
     end
 
     context "functional spec collaborating with discounts" do
-      let(:basket_discount) { Noths::BasketDiscount.new(6000, 10) }
-      let(:item_discount) {   Noths::ItemDiscount.new(2, 850, "001")}
+      let(:basket_discount) { BasketDiscount.new(6000, 10) }
+      let(:item_discount) {   ItemDiscount.new(2, 850, "001")}
 
 
       context "with a single promotion" do
