@@ -1,4 +1,11 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-# Specify your gem's dependencies in noths.gemspec
+gem "rspec"
+gem "activesupport"
+gem "virtus"
+
+group :development, :test do
+  gem "byebug"
+end
+
 gemspec
