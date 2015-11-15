@@ -1,4 +1,4 @@
-class Item 
+class Item
   include Virtus.value_object
 
   values do
