@@ -5,7 +5,6 @@ class ItemDiscount
   attribute :discounted_value, Integer
   attribute :product_code,     String
 
-
   def discount(basket)
     discountable = relevant_items(basket.items)
 

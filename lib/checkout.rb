@@ -5,7 +5,6 @@ class Checkout
 
   attribute :promotional_rules, Array
 
-
   delegate :items, :sub_total, to: :basket
 
   def scan(item)

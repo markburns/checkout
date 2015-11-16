@@ -9,9 +9,11 @@ describe ItemDiscount do
     let(:discount_trigger) { 2 }
     let(:discounted_value) { 850 }
     let(:product_code) { "001" }
-    let(:promotional_rule) { ItemDiscount.new(discount_trigger: discount_trigger, 
-                                              discounted_value: discounted_value,
-                                              product_code: product_code) }
+    let(:promotional_rule) do
+      ItemDiscount.new(discount_trigger: discount_trigger,
+                       discounted_value: discounted_value,
+                       product_code: product_code)
+    end
     let(:basket) { double "basket", items: items }
 
     subject(:discount) { promotional_rule.discount(basket) }
