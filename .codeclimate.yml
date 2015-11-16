@@ -1,5 +1,9 @@
 languages:
    Ruby: true
 exclude_paths:
-- "spec/*"
+  - "spec/*"
+  - enabled.yml
+  - disabled.yml
+  - .rubocop.yml
+  - .codeclimate.yml
 
