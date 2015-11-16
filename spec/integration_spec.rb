@@ -1,7 +1,21 @@
 describe Checkout do
-  let(:item_1) { Item.new price: 925,  product_code: "001", name: "Travel Card Holder"     }
-  let(:item_2) { Item.new price: 4500, product_code: "002", name: "Personalised cufflinks" }
-  let(:item_3) { Item.new price: 1995, product_code: "003", name: "Kids T-shirt"           }
+  let(:item_1) do
+    Item.new price: 925,
+             product_code: "001",
+             name: "Travel Card Holder"
+  end
+
+  let(:item_2) do
+    Item.new price: 4500,
+             product_code: "002",
+             name: "Personalised cufflinks"
+  end
+
+  let(:item_3) do
+    Item.new price: 1995,
+             product_code: "003",
+             name: "Kids T-shirt"
+  end
 
   let(:items) { [item_1, item_2, item_3] }
 
@@ -20,8 +34,18 @@ describe Checkout do
 
   context "with promotions" do
     let(:promotional_rules) { [basket_discount, item_discount] }
-    let(:basket_discount) { BasketDiscount.new(discount_trigger: 6000, discount_rate: 10) }
-    let(:item_discount) {   ItemDiscount.new(discount_trigger: 2, discounted_value: 850, product_code: "001") }
+    let(:basket_discount) do
+      BasketDiscount.new(
+        discount_trigger: 6000,
+        discount_rate: 10)
+    end
+
+    let(:item_discount) do
+      ItemDiscount.new(
+        discount_trigger: 2,
+        discounted_value: 850,
+        product_code: "001")
+    end
 
     context do
       let(:items) { [item_1, item_2, item_3] }

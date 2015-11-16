@@ -1,8 +1,18 @@
 require "spec_helper"
 
 describe ItemDiscount do
-  let(:item_1) { double "item_1", product_code: "001", name: "Travel Card Holder",     price: 925 }
-  let(:item_2) { double "item_2", product_code: "002", name: "Personalised cufflinks", price: 4500 }
+  let(:item_1) do
+    double "item_1", product_code: "001",
+                     name: "Travel Card Holder",
+                     price: 925
+  end
+
+  let(:item_2) do
+    double "item_2", product_code: "002",
+                     name: "Personalised cufflinks",
+                     price: 4500
+  end
+
   let(:promotional_rule) { ItemDiscount.new(items) }
 
   describe "#discount" do

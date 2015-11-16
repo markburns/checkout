@@ -1,9 +1,24 @@
 require "spec_helper"
 
 describe Checkout do
-  let(:item_1) { double "item_1", product_code: "001", name: "Travel Card Holder",     price: 925 }
-  let(:item_2) { double "item_2", product_code: "002", name: "Personalised cufflinks", price: 4500 }
-  let(:item_3) { double "item_3", product_code: "003", name: "Kids T-shirt",           price: 1995 }
+  let(:item_1) do
+    double "item_1", product_code: "001",
+                     name: "Travel Card Holder",
+                     price: 925
+  end
+
+  let(:item_2) do
+    double "item_2", product_code: "002",
+                     name: "Personalised cufflinks",
+                     price: 4500
+  end
+
+  let(:item_3) do
+    double "item_3", product_code: "003",
+                     name: "Kids T-shirt",
+                     price: 1995
+  end
+
   let(:items) { [item_1, item_2, item_3] }
 
   let(:promotional_rules) { [] }
@@ -63,8 +78,18 @@ describe Checkout do
     end
 
     context "functional spec collaborating with discounts" do
-      let(:basket_discount) { BasketDiscount.new(discount_trigger: 6000, discount_rate: 10) }
-      let(:item_discount) {   ItemDiscount.new(discount_trigger: 2, discounted_value: 850, product_code: "001") }
+      let(:basket_discount) do
+        BasketDiscount.new(
+          discount_trigger: 6000,
+          discount_rate: 10)
+      end
+
+      let(:item_discount) do
+        ItemDiscount.new(
+          discount_trigger: 2,
+          discounted_value: 850,
+          product_code: "001")
+      end
 
       context "with a single promotion" do
         let(:promotional_rules) { [basket_discount] }
@@ -78,7 +103,9 @@ describe Checkout do
         it do
           sub_total = items.map(&:price).inject(&:+)
           discount = sub_total * 0.1
-          expect(checkout.total).to eq (sub_total - discount).ceil
+          expected_total = (sub_total - discount).ceil
+
+          expect(checkout.total).to eq expected_total
         end
       end
 
@@ -94,7 +121,8 @@ describe Checkout do
             item_discount_value = (item_1.price * 2) - (discounted_value * 2)
             # only the item discount applies
 
-            expect(checkout.total).to eq (sub_total - item_discount_value).floor
+            expected_total = (sub_total - item_discount_value).floor
+            expect(checkout.total).to eq expected_total
           end
         end
 
@@ -104,9 +132,12 @@ describe Checkout do
           it do
             sub_total = item_1.price * 2 + item_2.price + item_3.price
             item_discount_value = (925 * 2) - (850 * 2)
-            basket_discount_value = sub_total * 0.1
+
             expect(checkout.item_discounts).to eq item_discount_value
-            expect(checkout.basket_discounts).to eq (sub_total - item_discount_value) * 0.1
+
+            expected_total = (sub_total - item_discount_value) * 0.1
+            expect(checkout.basket_discounts).to eq expected_total
+
             expect(checkout.total).to eq 7376
           end
         end
