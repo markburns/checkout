@@ -4,7 +4,9 @@ describe BasketDiscount do
   let(:sub_total) { 7420 }
   let(:basket) { double("basket", sub_total: sub_total) }
 
-  let(:promotional_rule) { BasketDiscount.new(discount_trigger, discount_rate) }
+  let(:promotional_rule) { BasketDiscount.new(discount_trigger: discount_trigger, 
+                                              discount_rate: discount_rate) 
+  }
   let(:discount) { promotional_rule.discount(basket, sub_total) }
 
   describe "#discount" do

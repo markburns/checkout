@@ -6,7 +6,7 @@ describe Checkout do
   let(:items) { [item_1, item_2, item_3] }
 
   let(:promotional_rules) { [] }
-  let(:checkout) { Checkout.new(promotional_rules) }
+  let(:checkout) { Checkout.new(promotional_rules: promotional_rules) }
 
   def scan_items!
     items.each do |i|
@@ -20,8 +20,8 @@ describe Checkout do
 
   context "with promotions" do
     let(:promotional_rules) { [basket_discount, item_discount] }
-    let(:basket_discount) { BasketDiscount.new(6000, 10) }
-    let(:item_discount) {   ItemDiscount.new(2, 850, "001") }
+    let(:basket_discount) { BasketDiscount.new(discount_trigger: 6000, discount_rate: 10) }
+    let(:item_discount) {   ItemDiscount.new(discount_trigger: 2, discounted_value: 850, product_code: "001") }
 
     context do
       let(:items) { [item_1, item_2, item_3] }

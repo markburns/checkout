@@ -1,4 +1,9 @@
-class BasketDiscount < Struct.new(:discount_trigger, :discount_rate)
+class BasketDiscount
+  include Virtus.model
+
+  attribute :discount_trigger, Integer
+  attribute :discount_rate, Numeric
+
   def discount(basket, amount_to_discount_from)
     if basket.sub_total > discount_trigger
       amount_to_discount_from * discount_rate / 100.0

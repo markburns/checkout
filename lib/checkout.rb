@@ -1,6 +1,11 @@
 require "./lib/checkout_setup"
 
-class Checkout < Struct.new(:promotional_rules)
+class Checkout
+  include Virtus.model
+
+  attribute :promotional_rules, Array
+
+
   delegate :items, :sub_total, to: :basket
 
   def scan(item)

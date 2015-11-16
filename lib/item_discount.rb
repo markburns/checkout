@@ -1,4 +1,11 @@
-class ItemDiscount < Struct.new(:discount_trigger, :discounted_value, :product_code)
+class ItemDiscount
+  include Virtus.model
+
+  attribute :discount_trigger, Integer
+  attribute :discounted_value, Integer
+  attribute :product_code,     String
+
+
   def discount(basket)
     discountable = relevant_items(basket.items)
 

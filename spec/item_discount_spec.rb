@@ -9,7 +9,9 @@ describe ItemDiscount do
     let(:discount_trigger) { 2 }
     let(:discounted_value) { 850 }
     let(:product_code) { "001" }
-    let(:promotional_rule) { ItemDiscount.new(discount_trigger, discounted_value, product_code) }
+    let(:promotional_rule) { ItemDiscount.new(discount_trigger: discount_trigger, 
+                                              discounted_value: discounted_value,
+                                              product_code: product_code) }
     let(:basket) { double "basket", items: items }
 
     subject(:discount) { promotional_rule.discount(basket) }
@@ -19,7 +21,6 @@ describe ItemDiscount do
         let(:items) { [item_1, item_1] }
 
         it do
-          normal_price = item_1.price * 2
           expected_discount = (item_1.price * 2) - (discounted_value * 2)
           expect(discount).to eq expected_discount
         end
@@ -29,7 +30,6 @@ describe ItemDiscount do
         let(:items) { [item_1, item_1, item_1] }
 
         it do
-          normal_price = item_1.price * 3
           expected_discount = (item_1.price * 3) - (discounted_value * 3)
 
           expect(discount).to eq expected_discount
@@ -41,7 +41,6 @@ describe ItemDiscount do
       let(:items) { [item_1, item_1, item_2] }
 
       it do
-        normal_price = item_1.price * 3
         expected_discount = (item_1.price * 2) - (discounted_value * 2)
         expect(discount).to eq expected_discount
       end
