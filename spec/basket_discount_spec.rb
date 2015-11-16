@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe BasketDiscount do
   let(:sub_total) { 7420 }
-  let(:basket) { double("basket", sub_total: sub_total)  }
+  let(:basket) { double("basket", sub_total: sub_total) }
 
   let(:promotional_rule) { BasketDiscount.new(discount_trigger, discount_rate) }
   let(:discount) { promotional_rule.discount(basket, sub_total) }
@@ -19,7 +19,7 @@ describe BasketDiscount do
 
     context "over £0 is a 50% discount" do
       let(:discount_trigger) { 0 }
-      let(:discount_rate) { 50 } 
+      let(:discount_rate) { 50 }
 
       context "with £500 basket" do
         let(:sub_total) { 500 }

@@ -64,8 +64,7 @@ describe Checkout do
 
     context "functional spec collaborating with discounts" do
       let(:basket_discount) { BasketDiscount.new(6000, 10) }
-      let(:item_discount) {   ItemDiscount.new(2, 850, "001")}
-
+      let(:item_discount) {   ItemDiscount.new(2, 850, "001") }
 
       context "with a single promotion" do
         let(:promotional_rules) { [basket_discount] }
@@ -79,7 +78,7 @@ describe Checkout do
         it do
           sub_total = items.map(&:price).inject(&:+)
           discount = sub_total * 0.1
-          expect(checkout.total).to eq  (sub_total - discount).ceil
+          expect(checkout.total).to eq (sub_total - discount).ceil
         end
       end
 
@@ -93,7 +92,7 @@ describe Checkout do
           it do
             sub_total = items.map(&:price).inject(&:+)
             item_discount_value = (item_1.price * 2) - (discounted_value * 2)
-            #only the item discount applies
+            # only the item discount applies
 
             expect(checkout.total).to eq (sub_total - item_discount_value).floor
           end
@@ -104,7 +103,7 @@ describe Checkout do
 
           it do
             sub_total = item_1.price * 2 + item_2.price + item_3.price
-            item_discount_value = (925*2)-(850*2)
+            item_discount_value = (925 * 2) - (850 * 2)
             basket_discount_value = sub_total * 0.1
             expect(checkout.item_discounts).to eq item_discount_value
             expect(checkout.basket_discounts).to eq (sub_total - item_discount_value) * 0.1

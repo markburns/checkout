@@ -46,8 +46,8 @@ class Checkout < Struct.new(:promotional_rules)
   end
 
   def rule_type(klass)
-    promotional_rules.
-      select{|r| r.kind_of?(klass) }
+    promotional_rules
+      .select { |r| r.is_a?(klass) }
   end
 
   def sub_total_after_item_discounts

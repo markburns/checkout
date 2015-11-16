@@ -4,7 +4,7 @@ class Basket
   end
 
   def add_items(items)
-    items.each{|i| add_item(i) }
+    items.each { |i| add_item(i) }
   end
 
   def add_item(item)

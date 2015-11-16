@@ -16,21 +16,21 @@ describe ItemDiscount do
 
     context "when buying 2 or more items the price drops to £8.50" do
       context "with 2 items" do
-        let(:items) { [item_1, item_1 ] }
+        let(:items) { [item_1, item_1] }
 
         it do
           normal_price = item_1.price * 2
-          expected_discount = (item_1.price * 2) - (discounted_value*2)
+          expected_discount = (item_1.price * 2) - (discounted_value * 2)
           expect(discount).to eq expected_discount
         end
       end
 
       context "with 3 items" do
-        let(:items) { [item_1, item_1, item_1 ] }
+        let(:items) { [item_1, item_1, item_1] }
 
         it do
           normal_price = item_1.price * 3
-          expected_discount = (item_1.price * 3) - (discounted_value*3)
+          expected_discount = (item_1.price * 3) - (discounted_value * 3)
 
           expect(discount).to eq expected_discount
         end
@@ -38,11 +38,11 @@ describe ItemDiscount do
     end
 
     context "with irrelevant items in the basket " do
-      let(:items) { [item_1, item_1, item_2 ] }
+      let(:items) { [item_1, item_1, item_2] }
 
       it do
         normal_price = item_1.price * 3
-        expected_discount = (item_1.price * 2 )- (discounted_value*2)
+        expected_discount = (item_1.price * 2) - (discounted_value * 2)
         expect(discount).to eq expected_discount
       end
     end

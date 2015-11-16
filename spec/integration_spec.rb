@@ -21,7 +21,7 @@ describe Checkout do
   context "with promotions" do
     let(:promotional_rules) { [basket_discount, item_discount] }
     let(:basket_discount) { BasketDiscount.new(6000, 10) }
-    let(:item_discount) {   ItemDiscount.new(2, 850, "001")}
+    let(:item_discount) {   ItemDiscount.new(2, 850, "001") }
 
     context do
       let(:items) { [item_1, item_2, item_3] }
@@ -48,5 +48,3 @@ describe Checkout do
     end
   end
 end
-
-

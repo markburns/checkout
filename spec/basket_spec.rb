@@ -4,7 +4,7 @@ describe Basket do
   let(:item_3) { double "item_3", product_code: "003", name: "Kids T-shirt",           price: 1995 }
   let(:items)  { [item_1, item_2, item_3] }
 
-  let(:basket) { Basket.new.tap{|b| b.add_items(items)} }
+  let(:basket) { Basket.new.tap { |b| b.add_items(items) } }
 
   describe "#add_item" do
     let(:basket) { Basket.new }
@@ -32,4 +32,3 @@ describe Basket do
     end
   end
 end
-

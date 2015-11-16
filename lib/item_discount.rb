@@ -5,7 +5,7 @@ class ItemDiscount < Struct.new(:discount_trigger, :discounted_value, :product_c
     if discountable.count >= discount_trigger
       normal_price = discountable.map(&:price).inject(&:+)
 
-      normal_price -  discountable.count * discounted_value
+      normal_price - discountable.count * discounted_value
     else
       0
     end
@@ -14,6 +14,6 @@ class ItemDiscount < Struct.new(:discount_trigger, :discounted_value, :product_c
   private
 
   def relevant_items(items)
-    items.select{|i| i.product_code == product_code}
+    items.select { |i| i.product_code == product_code }
   end
 end
