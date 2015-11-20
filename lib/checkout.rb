@@ -5,8 +5,6 @@ class Checkout
 
   attribute :promotional_rules, Array
 
-  delegate :items, :sub_total, to: :basket
-
   def scan(item)
     items.push item
   end
@@ -23,9 +21,13 @@ class Checkout
     running_sub_total.round
   end
 
+  def items
+    @items ||= []
+  end
+
   private
 
-  def basket
-    @basket ||= Basket.new
+  def sub_total
+    items.map(&:price).inject(&:+) || 0
   end
 end

@@ -59,7 +59,7 @@ describe Checkout do
 
     context "with decimal total" do
       before do
-        expect(checkout).to receive(:sub_total).and_return 10.0
+        expect(checkout).to receive(:sub_total).and_return 9.5
       end
 
       it "rounds up" do
