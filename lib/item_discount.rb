@@ -1,6 +1,4 @@
-class ItemDiscount
-  include Virtus.model
-
+class ItemDiscount < Discount
   attribute :discount_trigger, Integer
   attribute :discounted_value, Integer
   attribute :product_code,     String

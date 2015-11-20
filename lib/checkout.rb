@@ -13,9 +13,7 @@ class Checkout
     running_sub_total = sub_total
 
     promotional_rules.each do |r|
-      discount = r.discount(items: items, running_sub_total: running_sub_total)
-
-      running_sub_total = running_sub_total - discount
+      running_sub_total = r.apply(items: items, running_sub_total: running_sub_total)
     end
 
     running_sub_total.round

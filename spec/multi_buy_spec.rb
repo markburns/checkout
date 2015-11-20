@@ -1,7 +1,7 @@
-describe MultiBuy do
+describe MultiBuyDiscount do
   describe "#discount" do
     let(:item_1) do
-      Item.new price: discount_value,
+      Item.new price: discounted_value,
         product_code: "003",
         name: "Kids T-shirt"
     end
@@ -12,14 +12,14 @@ describe MultiBuy do
         name: "Something else"
     end
 
-    let(:discount_value) { 1995 }
+    let(:discounted_value) { 1995 }
 
     let(:items) { [item_1, item_1, item_1, item_1,
                    item_2, item_2,
                    ] 
     }
 
-    let(:multi_buy) { MultiBuy.new(discount_value: discount_value, discount_trigger: discount_trigger, product_code: "003") }
+    let(:multi_buy) { MultiBuyDiscount.new(discounted_value: discounted_value, discount_trigger: discount_trigger, product_code: "003") }
 
     context "not triggering a discount" do
       let(:discount_trigger) { 5 }
@@ -33,7 +33,7 @@ describe MultiBuy do
       let(:discount_trigger) { 4 }
 
       it "buy 4 get 1 free" do
-        expect(multi_buy.discount(items: items)).to eq discount_value
+        expect(multi_buy.discount(items: items)).to eq discounted_value
       end
     end
 
@@ -42,7 +42,7 @@ describe MultiBuy do
       let(:discount_trigger) { 3 }
 
       it "just overtriggers a discount" do
-        expect(multi_buy.discount(items: items)).to eq discount_value
+        expect(multi_buy.discount(items: items)).to eq discounted_value
       end
     end
 
@@ -50,7 +50,7 @@ describe MultiBuy do
       let(:discount_trigger) { 2 }
 
       it "buy 4 get 2 free" do
-        expect(multi_buy.discount(items: items)).to eq discount_value * 2
+        expect(multi_buy.discount(items: items)).to eq discounted_value * 2
       end
     end
 

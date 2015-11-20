@@ -1,6 +1,4 @@
-class BasketDiscount
-  include Virtus.model
-
+class BasketDiscount < Discount
   attribute :discount_trigger, Integer
   attribute :discount_rate, Numeric
 
