@@ -13,7 +13,8 @@ class Checkout
     running_sub_total = sub_total
 
     promotional_rules.each do |r|
-      running_sub_total = r.apply(items: items, running_sub_total: running_sub_total)
+      args = { items: items, running_sub_total: running_sub_total }
+      running_sub_total = r.apply(args)
     end
 
     running_sub_total.round

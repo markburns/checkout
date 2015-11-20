@@ -3,7 +3,7 @@ class ItemDiscount < Discount
   attribute :discounted_value, Integer
   attribute :product_code,     String
 
-  def discount(items: , running_sub_total: nil)
+  def discount(items:, running_sub_total: nil)
     discountable = relevant_items(items)
 
     if discountable.count >= discount_trigger

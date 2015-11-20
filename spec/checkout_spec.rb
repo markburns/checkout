@@ -105,7 +105,7 @@ describe Checkout do
       end
 
       context "with multiple promotions but only one applying" do
-        let(:promotional_rules) { [ item_discount, basket_discount] }
+        let(:promotional_rules) { [item_discount, basket_discount] }
 
         context do
           let(:discounted_value) { 850 }
