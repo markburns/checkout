@@ -8,7 +8,7 @@ describe BasketDiscount do
     BasketDiscount.new(discount_trigger: discount_trigger,
                        discount_rate: discount_rate)
   end
-  let(:discount) { promotional_rule.discount(basket, sub_total) }
+  let(:discount) { promotional_rule.discount(running_sub_total: sub_total) }
 
   describe "#discount" do
     context "over £60 is a 10% discount" do

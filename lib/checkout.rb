@@ -17,13 +17,13 @@ class Checkout
 
   def basket_discounts
     apply_rules(basket_discount_rules) do |r|
-      r.discount(basket, sub_total_after_item_discounts)
+      r.discount(running_sub_total: sub_total_after_item_discounts)
     end
   end
 
   def item_discounts
     apply_rules(item_discount_rules) do |r|
-      r.discount(basket)
+      r.discount(items: items)
     end
   end
 

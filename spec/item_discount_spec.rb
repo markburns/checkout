@@ -24,9 +24,8 @@ describe ItemDiscount do
                        discounted_value: discounted_value,
                        product_code: product_code)
     end
-    let(:basket) { double "basket", items: items }
 
-    subject(:discount) { promotional_rule.discount(basket) }
+    subject(:discount) { promotional_rule.discount(items: items) }
 
     context "when buying 2 or more items the price drops to £8.50" do
       context "with 2 items" do

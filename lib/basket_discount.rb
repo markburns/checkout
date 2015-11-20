@@ -4,9 +4,9 @@ class BasketDiscount
   attribute :discount_trigger, Integer
   attribute :discount_rate, Numeric
 
-  def discount(basket, amount_to_discount_from)
-    if basket.sub_total > discount_trigger
-      amount_to_discount_from * discount_rate / 100.0
+  def discount(items: nil, running_sub_total: )
+    if running_sub_total > discount_trigger
+      running_sub_total * discount_rate / 100.0
     else
       0
     end

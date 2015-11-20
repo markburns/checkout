@@ -34,6 +34,7 @@ describe Checkout do
 
   context "with promotions" do
     let(:promotional_rules) { [basket_discount, item_discount] }
+
     let(:basket_discount) do
       BasketDiscount.new(
         discount_trigger: 6000,
