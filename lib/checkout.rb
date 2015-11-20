@@ -12,49 +12,20 @@ class Checkout
   end
 
   def total
-    (sub_total_after_item_discounts - basket_discounts).round
-  end
+    running_sub_total = sub_total
 
-  def basket_discounts
-    apply_rules(basket_discount_rules) do |r|
-      r.discount(running_sub_total: sub_total_after_item_discounts)
-    end
-  end
+    promotional_rules.each do |r|
+      discount = r.discount(items: items, running_sub_total: running_sub_total)
 
-  def item_discounts
-    apply_rules(item_discount_rules) do |r|
-      r.discount(items: items)
+      running_sub_total = running_sub_total - discount
     end
+
+    running_sub_total.round
   end
 
   private
 
   def basket
     @basket ||= Basket.new
-  end
-
-  def apply_rules(rules)
-    result = rules.map do |r|
-      yield r
-    end
-
-    result.inject(&:+) || 0
-  end
-
-  def basket_discount_rules
-    rule_type BasketDiscount
-  end
-
-  def item_discount_rules
-    rule_type ItemDiscount
-  end
-
-  def rule_type(klass)
-    promotional_rules
-      .select { |r| r.is_a?(klass) }
-  end
-
-  def sub_total_after_item_discounts
-    (sub_total - item_discounts)
   end
 end

@@ -60,7 +60,6 @@ describe Checkout do
     context "with decimal total" do
       before do
         expect(checkout).to receive(:sub_total).and_return 10.0
-        expect(checkout).to receive(:basket_discounts).and_return 0.4
       end
 
       it "rounds up" do
@@ -97,10 +96,6 @@ describe Checkout do
         let(:items) { [item_1, item_3, item_1, item_2] }
 
         it do
-          expect(checkout.basket_discounts).to eq 834.5
-        end
-
-        it do
           sub_total = items.map(&:price).inject(&:+)
           discount = sub_total * 0.1
           expected_total = (sub_total - discount).ceil
@@ -110,7 +105,7 @@ describe Checkout do
       end
 
       context "with multiple promotions but only one applying" do
-        let(:promotional_rules) { [basket_discount, item_discount] }
+        let(:promotional_rules) { [ item_discount, basket_discount] }
 
         context do
           let(:discounted_value) { 850 }
@@ -130,14 +125,6 @@ describe Checkout do
           let(:items) { [item_1, item_2, item_1, item_3] }
 
           it do
-            sub_total = item_1.price * 2 + item_2.price + item_3.price
-            item_discount_value = (925 * 2) - (850 * 2)
-
-            expect(checkout.item_discounts).to eq item_discount_value
-
-            expected_total = (sub_total - item_discount_value) * 0.1
-            expect(checkout.basket_discounts).to eq expected_total
-
             expect(checkout.total).to eq 7376
           end
         end
